@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github2Wandbox", "Github2Wandbox\Github2Wandbox.csproj", "{A9882EF5-9541-4599-9ADF-EC9DC3655C5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WandboxApiExploration", "WandboxApiExploration\WandboxApiExploration.csproj", "{71874C47-1590-4C5B-85C1-3A5DED1198B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github2WandboxTest", "Github2WandboxTest\Github2WandboxTest.csproj", "{77CD3DC8-E122-4B40-B8FC-9DFFC8A84F7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9882EF5-9541-4599-9ADF-EC9DC3655C5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9882EF5-9541-4599-9ADF-EC9DC3655C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9882EF5-9541-4599-9ADF-EC9DC3655C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9882EF5-9541-4599-9ADF-EC9DC3655C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71874C47-1590-4C5B-85C1-3A5DED1198B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71874C47-1590-4C5B-85C1-3A5DED1198B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71874C47-1590-4C5B-85C1-3A5DED1198B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71874C47-1590-4C5B-85C1-3A5DED1198B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77CD3DC8-E122-4B40-B8FC-9DFFC8A84F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77CD3DC8-E122-4B40-B8FC-9DFFC8A84F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77CD3DC8-E122-4B40-B8FC-9DFFC8A84F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77CD3DC8-E122-4B40-B8FC-9DFFC8A84F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
