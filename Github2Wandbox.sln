@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github2Wandbox", "Github2Wa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WandboxApiExploration", "WandboxApiExploration\WandboxApiExploration.csproj", "{71874C47-1590-4C5B-85C1-3A5DED1198B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github2WandboxTest", "Github2WandboxTest\Github2WandboxTest.csproj", "{77CD3DC8-E122-4B40-B8FC-9DFFC8A84F7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Github2WandboxUnitTests", "Github2WandboxUnitTests\Github2WandboxUnitTests.csproj", "{77CD3DC8-E122-4B40-B8FC-9DFFC8A84F7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

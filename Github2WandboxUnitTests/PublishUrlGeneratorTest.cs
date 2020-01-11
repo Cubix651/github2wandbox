@@ -3,7 +3,7 @@ using Xunit;
 using Github2Wandbox.Models;
 using Github2Wandbox.ViewModels;
 
-namespace Github2WandboxTest
+namespace Github2WandboxUnitTests
 {
     public class PublishUrlGeneratorTest
     {
