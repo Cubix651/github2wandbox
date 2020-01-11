@@ -50,18 +50,6 @@ namespace Github2Wandbox
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "test",
-                    pattern: "Test/{*test.Option}",
-                    defaults: new { controller = "Home", action = "Test" });
-                //var prefix = $"description.{nameof(GithubDirectoryDescription)}";
-                //var repository = $"{prefix}.{nameof(GithubDirectoryDescription.Repository)}";
-                //var owner = $"{prefix}.{nameof(GithubDirectoryDescription.Owner)}";
-                //var mainPath = $"{prefix}.{nameof(GithubDirectoryDescription.MainPath)}";
-                //endpoints.MapControllerRoute(
-                //    name: "publish",
-                //    pattern: $"Publish/{{{owner}}}/{{{repository}}}/{{*{mainPath}}}",
-                //    defaults: new { controller = "Home", action = "Publish" });
-                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
