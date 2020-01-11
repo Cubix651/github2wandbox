@@ -9,16 +9,33 @@
     to <a href="https://github.com" target="_blank">GitHub</a>
     in <a href="https://wandbox.org" target="_blank">Wandbox</a>.</p>
     <form asp-controller="Home" asp-action="Generate" method="post">
-        <label asp-for="owner"></label>
-        <input asp-for="owner" />
-        <label asp-for="repository"></label>
-        <input asp-for="repository" />
-        <label asp-for="main_path"></label>
-        <input asp-for="main_path" />
-        <select asp-for="compiler_standard">
-            <option value="c++2a">C++20</option>
-            <option value="gnu++1y">GNU C++14</option>
-        </select>
-        <button type="submit">Open in Wandbox</button>
+        <table align="center">
+            <tr>
+                <td><label asp-for="owner"></label></td>
+                <td><input asp-for="owner" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="repository"></label></td>
+                <td><input asp-for="repository" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="main_path"></label></td>
+                <td><input asp-for="main_path" /></td>
+            </tr>
+            <tr>
+                <td><label asp-for="compiler_standard"></label></td>
+                <td>
+                    <select asp-for="compiler_standard">
+                        <option value="c++2a">C++20</option>
+                        <option value="gnu++1y">GNU C++14</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Open in Wandbox</button>
+                </td>
+            </tr>
+        </table>
     </form>
 </div>

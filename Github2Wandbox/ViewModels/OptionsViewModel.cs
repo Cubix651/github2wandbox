@@ -10,6 +10,7 @@ namespace Github2Wandbox.ViewModels
         public string repository { get; set; }
         [DisplayName("Main path")]
         public string main_path { get; set; }
+        [DisplayName("Compiler standard")]
         public string compiler_standard { get; set; }
     }
 }
