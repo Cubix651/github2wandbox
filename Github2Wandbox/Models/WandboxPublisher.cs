@@ -45,13 +45,18 @@ namespace Github2Wandbox.Models
 
         public string Publish(SourceFiles sourceFiles, WandboxOptions options)
         {
+            string sourcePaths = "";
+            if (sourceFiles.Codes != null)
+                sourcePaths = String.Join("\n", sourceFiles.Codes
+                    .Where(c => c.File.EndsWith(".cpp"))
+                    .Select(c => c.File));
             var compileRequest = new CompileRequest
             {
                 Code = sourceFiles.Code,
                 Codes = sourceFiles.Codes,
                 Compiler = Compiler,
                 Options = options.CompilerStandard,
-                CompilerOptionRaw = String.Join("\n", sourceFiles.Codes.Where(c => c.File.EndsWith(".cpp")).Select(c => c.File)),
+                CompilerOptionRaw = sourcePaths,
                 Save = true
             };
             var compileResponse = PostHttpViaJson(compileRequest);
