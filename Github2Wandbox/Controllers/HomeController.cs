@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Github2Wandbox.Models;
@@ -61,11 +57,6 @@ namespace Github2Wandbox.Controllers
             };
             string wandboxUrl = githubToWandbox.Transform(description);
             return Redirect(wandboxUrl);
-        }
-
-        public IActionResult Test(TestModel test)
-        {
-            return Content($"{test.Option};{test.Option2}");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
