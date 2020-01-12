@@ -33,7 +33,7 @@ namespace Github2Wandbox.Controllers
         public IActionResult Generate(OptionsViewModel optionsViewModel)
         {
             string url = publishUrlGenerator.Generate(optionsViewModel);
-            string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}/";
+            string baseUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/";
             return View(new GenerateViewModel{ Url =  baseUrl + url});
         }
 
