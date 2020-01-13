@@ -37,5 +37,13 @@ namespace Github2WandboxSeleniumTests
                 Assert.Equal(expectedGeneratedLink, value);
             }
         }
+
+        [Fact]
+        public void should_redirect_succesfully_to_wandbox()
+        {
+            Driver.Navigate().GoToUrl(BaseUrl + "Publish/Cubix651/github2wandbox-testrepo/multifile-example/main.cpp?compiler_standard=c%2B%2B2a");
+            Assert.StartsWith("https://wandbox.org", Driver.Url);
+            Assert.Equal(Driver.FindElement(By.CssSelector(".ExitCode")).Text, "0");
+        }
     }
 }

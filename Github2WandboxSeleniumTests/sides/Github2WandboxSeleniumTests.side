@@ -101,6 +101,29 @@
       ],
       "value": "https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a"
     }]
+  }, {
+    "id": "da0d1ab8-8e16-45cb-ab79-8fcb373aa9f0",
+    "name": "should_redirect_succesfully_to_wandbox",
+    "commands": [{
+      "id": "43ca1b6d-4f8c-49cb-b993-9d1d100832d5",
+      "comment": "",
+      "command": "open",
+      "target": "/Publish/Cubix651/github2wandbox-testrepo/multifile-example/main.cpp?compiler_standard=c%2B%2B2a",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e798ac0e-6124-4764-9473-b201a97b0255",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.ExitCode",
+      "targets": [
+        ["css=.ExitCode", "css:finder"],
+        ["xpath=//div[@id='result-container-tab-permlink']/div[3]/pre[3]", "xpath:idRelative"],
+        ["xpath=//pre[3]", "xpath:position"],
+        ["xpath=//pre[contains(.,'0')]", "xpath:innerText"]
+      ],
+      "value": "0"
+    }]
   }],
   "suites": [{
     "id": "ee0b5d26-d917-4625-951a-e463ce02a6f4",
