@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace Github2Wandbox.Models
 {
     public interface IGithubScanner
     {
-        SourceFiles GetSourceFiles(GithubDirectoryDescription description);
+        Task<SourceFiles> GetSourceFilesAsync(GithubDirectoryDescription description);
     }
 }

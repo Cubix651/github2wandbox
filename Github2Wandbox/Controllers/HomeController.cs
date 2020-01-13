@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Github2Wandbox.Models;
 using Github2Wandbox.ViewModels;
+using System.Threading.Tasks;
 
 namespace Github2Wandbox.Controllers
 {
@@ -40,7 +41,7 @@ namespace Github2Wandbox.Controllers
         [HttpGet("Publish/{" + nameof(OptionsViewModel.owner) + "}/" +
             "{" + nameof(OptionsViewModel.repository) + "}/" +
             "{*" + nameof(OptionsViewModel.main_path) + "}")]
-        public IActionResult Publish(OptionsViewModel optionsViewModel)
+        public async Task<IActionResult> Publish(OptionsViewModel optionsViewModel)
         {
             var description = new TransformationDescription
             {
@@ -55,7 +56,7 @@ namespace Github2Wandbox.Controllers
                     CompilerStandard = optionsViewModel.compiler_standard
                 }
             };
-            string wandboxUrl = githubToWandbox.Transform(description);
+            string wandboxUrl = await githubToWandbox.TransformAsync(description);
             return Redirect(wandboxUrl);
         }
 

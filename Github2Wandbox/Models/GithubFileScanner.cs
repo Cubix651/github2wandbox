@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Github2Wandbox.Models
 {
@@ -15,16 +16,17 @@ namespace Github2Wandbox.Models
             httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
         }
 
-        private string GetHttp(string url)
+        private async Task<string> GetHttpAsync(string url)
         {
-            return httpClient.GetAsync(url).Result.Content.ReadAsStringAsync().Result;
+            var response = await httpClient.GetAsync(url);
+            return await response.Content.ReadAsStringAsync();
         }
 
-        public SourceFiles GetSourceFiles(GithubDirectoryDescription githubDirectoryDescription)
+        public async Task<SourceFiles> GetSourceFilesAsync(GithubDirectoryDescription githubDirectoryDescription)
         {
             return new SourceFiles
             {
-                Code = GetHttp(githubDirectoryDescription.Url)
+                Code = await GetHttpAsync(githubDirectoryDescription.Url)
             };
         }
     }

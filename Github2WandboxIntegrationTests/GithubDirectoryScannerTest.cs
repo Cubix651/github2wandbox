@@ -2,6 +2,7 @@ using Xunit;
 using Github2Wandbox.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Github2WandboxIntegrationTests
 {
@@ -11,7 +12,7 @@ namespace Github2WandboxIntegrationTests
         static readonly string Directory = "multifile";
 
         [Fact]
-        public void should_get_multifile_content()
+        public async Task should_get_multifile_content()
         {
             var directoryDescription = new GithubDirectoryDescription
             {
@@ -20,7 +21,7 @@ namespace Github2WandboxIntegrationTests
                 MainPath = "multifile-example/main.cpp",
             };
 
-            var sourceFiles = githubFileScanner.GetSourceFiles(directoryDescription);
+            var sourceFiles = await githubFileScanner.GetSourceFilesAsync(directoryDescription);
 
             Assert.Equal(Resources.Get($"{Directory}/main.cpp"), sourceFiles.Code);
             var expectedCodes = new[] { "a.cpp", "a.h", "b.cpp", "b.h" }

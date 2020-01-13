@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using Github2Wandbox.Models.Wandbox;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -27,23 +28,24 @@ namespace Github2Wandbox.Models
             httpClient = new HttpClient();
         }
 
-        private string PostHttp(string content)
+        private async Task<string> PostHttpAsync(string content)
         {
             var bytes = Encoding.UTF8.GetBytes(content);
             var memoryStream = new MemoryStream(bytes);
             var streamContent = new StreamContent(memoryStream);
             streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-            return httpClient.PostAsync(Url, streamContent).Result.Content.ReadAsStringAsync().Result;
+            var response = await httpClient.PostAsync(Url, streamContent);
+            return await response.Content.ReadAsStringAsync();
         }
 
-        private CompileResponse PostHttpViaJson(CompileRequest compileRequest)
+        private async Task<CompileResponse> PostHttpViaJsonAsync(CompileRequest compileRequest)
         {
             var jsonRequest = JsonConvert.SerializeObject(compileRequest, jsonSerializerSettings);
-            var jsonResponse = PostHttp(jsonRequest);
+            var jsonResponse = await PostHttpAsync(jsonRequest);
             return JsonConvert.DeserializeObject<CompileResponse>(jsonResponse);
         }
 
-        public string Publish(SourceFiles sourceFiles, WandboxOptions options)
+        public async Task<string> PublishAsync(SourceFiles sourceFiles, WandboxOptions options)
         {
             string sourcePaths = "";
             if (sourceFiles.Codes != null)
@@ -59,7 +61,7 @@ namespace Github2Wandbox.Models
                 CompilerOptionRaw = sourcePaths,
                 Save = true
             };
-            var compileResponse = PostHttpViaJson(compileRequest);
+            var compileResponse = await PostHttpViaJsonAsync(compileRequest);
             return compileResponse.Url;
         }
     }

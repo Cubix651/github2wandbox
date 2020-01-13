@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace Github2Wandbox.Models
 {
     public class GithubToWandbox
@@ -11,10 +13,10 @@ namespace Github2Wandbox.Models
             this.wandboxPublisher = wandboxPublisher;
         }
 
-        public string Transform(TransformationDescription description)
+        public async Task<string> TransformAsync(TransformationDescription description)
         {
-            var sourceFiles = githubScanner.GetSourceFiles(description.GithubDirectoryDescription);
-            return wandboxPublisher.Publish(sourceFiles, description.WandboxOptions);
+            var sourceFiles = await githubScanner.GetSourceFilesAsync(description.GithubDirectoryDescription);
+            return await wandboxPublisher.PublishAsync(sourceFiles, description.WandboxOptions);
         }
     }
 }
