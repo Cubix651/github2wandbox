@@ -1,0 +1,115 @@
+{
+  "id": "beb2028e-6b45-4bb2-9423-8943d0679018",
+  "version": "2.0",
+  "name": "Github2WandboxSeleniumTests",
+  "url": "https://localhost:5001",
+  "tests": [{
+    "id": "455aea48-f498-4cbe-a648-49ed1a972d48",
+    "name": "should_generate_link_when_form_filled",
+    "commands": [{
+      "id": "9305e95e-7039-4da0-b3f0-2c62a7c0b85c",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37a122cd-7853-40f2-a52e-f86af22e372f",
+      "comment": "",
+      "command": "type",
+      "target": "id=owner",
+      "targets": [
+        ["id=owner", "id"],
+        ["name=owner", "name"],
+        ["css=#owner", "css:finder"],
+        ["xpath=//input[@id='owner']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Cubix651"
+    }, {
+      "id": "05c145ba-9047-4844-8812-672b4be09e44",
+      "comment": "",
+      "command": "type",
+      "target": "id=repository",
+      "targets": [
+        ["id=repository", "id"],
+        ["name=repository", "name"],
+        ["css=#repository", "css:finder"],
+        ["xpath=//input[@id='repository']", "xpath:attributes"],
+        ["xpath=//tr[2]/td[2]/input", "xpath:position"]
+      ],
+      "value": "github2wandbox-testrepo"
+    }, {
+      "id": "9476979a-ed17-4fe0-bb72-3a23622be86e",
+      "comment": "",
+      "command": "type",
+      "target": "id=main_path",
+      "targets": [
+        ["id=main_path", "id"],
+        ["name=main_path", "name"],
+        ["css=#main_path", "css:finder"],
+        ["xpath=//input[@id='main_path']", "xpath:attributes"],
+        ["xpath=//tr[3]/td[2]/input", "xpath:position"]
+      ],
+      "value": "singlefile-examples/a.cpp"
+    }, {
+      "id": "cbb4c1e0-a279-4db7-8bde-c09513bf1ba8",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(1)",
+      "targets": [
+        ["css=button:nth-child(1)", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//td/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Open in Wandbox')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f2c2dca-2fc0-47bd-8282-bff18a54f997",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6e8a39b-8d11-4fd6-a0ed-e79f8fdf7bef",
+      "comment": "",
+      "command": "verifyText",
+      "target": "linkText=https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a",
+      "targets": [
+        ["linkText=https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a", "linkText"],
+        ["css=p > a", "css:finder"],
+        ["xpath=//a[contains(text(),'https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a')]", "xpath:href"],
+        ["xpath=//p[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a')]", "xpath:innerText"]
+      ],
+      "value": "https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a"
+    }, {
+      "id": "7b6f5ede-7ece-4916-be54-c599f5cff2c2",
+      "comment": "",
+      "command": "verifyValue",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "https://localhost:5001/Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a"
+    }]
+  }],
+  "suites": [{
+    "id": "ee0b5d26-d917-4625-951a-e463ce02a6f4",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["455aea48-f498-4cbe-a648-49ed1a972d48"]
+  }],
+  "urls": ["https://localhost:5001/"],
+  "plugins": []
+}
