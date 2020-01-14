@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Xunit;
 using Xunit.Abstractions;
+using Github2Wandbox.Models.Github;
 
 namespace WandboxApiExploration
 {

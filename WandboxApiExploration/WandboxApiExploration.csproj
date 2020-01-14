@@ -13,4 +13,7 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Github2Wandbox\Github2Wandbox.csproj" />
+  </ItemGroup>
 </Project>
