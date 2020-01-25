@@ -18,7 +18,11 @@ namespace Github2Wandbox.Controllers
             PublicationsContext publicationsContext)
         {
             _logger = logger;
-            githubToWandbox = new GithubToWandbox(new GithubDirectoryScanner(), new WandboxPublisher());
+            githubToWandbox = new GithubToWandbox(
+                publicationsContext,
+                new GithubDirectoryCommitChecker(),
+                new GithubDirectoryScanner(),
+                new WandboxPublisher());
             publishUrlGenerator = new PublishUrlGenerator();
         }
 
