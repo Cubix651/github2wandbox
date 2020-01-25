@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Github2Wandbox.Models;
 using Github2Wandbox.ViewModels;
 using System.Threading.Tasks;
+using Github2Wandbox.Repository;
 
 namespace Github2Wandbox.Controllers
 {
@@ -13,7 +14,8 @@ namespace Github2Wandbox.Controllers
         private readonly GithubToWandbox githubToWandbox;
         private readonly PublishUrlGenerator publishUrlGenerator;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+            PublicationsContext publicationsContext)
         {
             _logger = logger;
             githubToWandbox = new GithubToWandbox(new GithubDirectoryScanner(), new WandboxPublisher());
