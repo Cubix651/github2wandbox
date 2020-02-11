@@ -34,7 +34,7 @@ namespace Github2Wandbox.Models
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<string> GetCommitShaAsync(GithubDirectoryDescription description)
+        public virtual async Task<string> GetCommitShaAsync(GithubDirectoryDescription description)
         {
             string mainDirectory = Path.GetDirectoryName(description.MainPath);
             string escapedMainDirectory = WebUtility.UrlEncode(mainDirectory);
