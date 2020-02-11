@@ -45,7 +45,7 @@ namespace Github2Wandbox.Models
             return JsonConvert.DeserializeObject<CompileResponse>(jsonResponse);
         }
 
-        public async Task<string> PublishAsync(SourceFiles sourceFiles, WandboxOptions options)
+        public virtual async Task<string> PublishAsync(SourceFiles sourceFiles, WandboxOptions options)
         {
             string sourcePaths = "";
             if (sourceFiles.Codes != null)
