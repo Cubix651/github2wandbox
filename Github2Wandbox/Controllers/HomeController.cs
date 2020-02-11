@@ -5,6 +5,7 @@ using Github2Wandbox.Models;
 using Github2Wandbox.ViewModels;
 using System.Threading.Tasks;
 using Github2Wandbox.Repository;
+using Microsoft.AspNetCore.Identity;
 
 namespace Github2Wandbox.Controllers
 {
@@ -13,9 +14,13 @@ namespace Github2Wandbox.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly GithubToWandbox githubToWandbox;
         private readonly PublishUrlGenerator publishUrlGenerator;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
         public HomeController(ILogger<HomeController> logger,
-            PublicationsContext publicationsContext)
+            PublicationsContext publicationsContext,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
             githubToWandbox = new GithubToWandbox(
@@ -24,6 +29,8 @@ namespace Github2Wandbox.Controllers
                 new GithubDirectoryScanner(),
                 new WandboxPublisher());
             publishUrlGenerator = new PublishUrlGenerator();
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -64,6 +71,62 @@ namespace Github2Wandbox.Controllers
             };
             string wandboxUrl = await githubToWandbox.TransformAsync(description);
             return Redirect(wandboxUrl);
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser
+                {
+                    UserName = viewModel.Email,
+                    Email = viewModel.Email
+                };
+                var result = await userManager.CreateAsync(user, viewModel.Password);
+
+                if (result.Succeeded)
+                {
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction(nameof(Index));
+                }
+
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError("", error.Description);
+            }
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(viewModel.Email, viewModel.Password, viewModel.Remember, false);
+                if (result.Succeeded)
+                    return RedirectToAction(nameof(Index));
+
+                ModelState.AddModelError("", "Invalid login attempt");
+            }
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
