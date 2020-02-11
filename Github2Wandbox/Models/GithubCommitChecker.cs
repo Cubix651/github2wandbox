@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -35,8 +36,7 @@ namespace Github2Wandbox.Models
 
         public async Task<string> GetCommitShaAsync(GithubDirectoryDescription description)
         {
-            int index = description.MainPath.LastIndexOf('/');
-            string mainDirectory = description.MainPath.Substring(0, index);
+            string mainDirectory = Path.GetDirectoryName(description.MainPath);
             string escapedMainDirectory = WebUtility.UrlEncode(mainDirectory);
             string apiUrl = $"https://api.github.com/repos/{description.Owner}/" +
                 $"{description.Repository}/commits?path={escapedMainDirectory}";

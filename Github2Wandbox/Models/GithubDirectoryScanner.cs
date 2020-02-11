@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -34,9 +35,8 @@ namespace Github2Wandbox.Models
 
         public async Task<SourceFiles> GetSourceFilesAsync(GithubDirectoryDescription description)
         {
-            int limes = description.MainPath.LastIndexOf('/');
-            string mainDirectory = description.MainPath.Substring(0, limes);
-            string mainFile = description.MainPath.Substring(limes + 1);
+            string mainDirectory = Path.GetDirectoryName(description.MainPath);
+            string mainFile = Path.GetFileName(description.MainPath);
             string apiUrl = $"https://api.github.com/repos/{description.Owner}/{description.Repository}/contents/{mainDirectory}";
             string response = await GetHttpAsync(apiUrl);
             var files = JsonConvert.DeserializeObject<List<ContentResponse>>(response, jsonSettings);
