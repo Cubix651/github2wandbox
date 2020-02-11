@@ -1,0 +1,44 @@
+@model Github2Wandbox.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Login</h1>
+    <form asp-controller="Home" asp-action="Login" method="post">
+        <table align="center">
+            <tr>
+                <td colspan="2">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Email"></label></td>
+                <td><input asp-for="Email" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Password"></label></td>
+                <td><input asp-for="Password" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Remember"></label></td>
+                <td><input asp-for="Remember" type="checkbox" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Login</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
