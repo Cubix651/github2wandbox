@@ -1,0 +1,49 @@
+@model Github2Wandbox.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Register</h1>
+    <form asp-controller="Home" asp-action="Register" method="post">
+        <table align="center">
+            <tr>
+                <td colspan="2">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Email"></label></td>
+                <td><input asp-for="Email" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="Password"></label></td>
+                <td><input asp-for="Password" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label asp-for="ConfirmPassword"></label></td>
+                <td><input asp-for="ConfirmPassword" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Register</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
