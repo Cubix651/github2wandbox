@@ -18,4 +18,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Github2Wandbox\Github2Wandbox.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Resources\multifile_response.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
