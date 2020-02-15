@@ -15,9 +15,11 @@ namespace Github2Wandbox.Models.Github
 
         public async Task<SourceFiles> GetSourceFilesAsync(GithubDirectoryDescription githubDirectoryDescription)
         {
+            string url = $"https://raw.githubusercontent.com/{githubDirectoryDescription.Owner}" +
+                $"/{githubDirectoryDescription.Repository}/master/{githubDirectoryDescription.MainPath}";
             return new SourceFiles
             {
-                Code = await httpClient.GetAsync(githubDirectoryDescription.Url)
+                Code = await httpClient.GetAsync(url)
             };
         }
     }

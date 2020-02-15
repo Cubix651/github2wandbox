@@ -9,11 +9,6 @@ namespace Github2Wandbox.Models.Github
         public string Repository { get; set; }
         public string MainPath { get; set; }
 
-        public string Url
-        {
-            get => $"https://raw.githubusercontent.com/{Owner}/{Repository}/master/{MainPath}";
-        }
-
         public override bool Equals(object obj)
         {
             return Equals(obj as GithubDirectoryDescription);
