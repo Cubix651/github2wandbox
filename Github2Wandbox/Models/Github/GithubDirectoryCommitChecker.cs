@@ -2,22 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Github2Wandbox.Models.Github;
+using Github2Wandbox.Models.Github.API;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Github2Wandbox.Models
+namespace Github2Wandbox.Models.Github
 {
-    public class GithubDirectoryScanner : IGithubScanner
+    public class GithubDirectoryCommitChecker
     {
         HttpClient httpClient;
         JsonSerializerSettings jsonSettings;
 
         public static string UserAgent { get; } = "Github2Wandbox";
 
-        public GithubDirectoryScanner()
+        public GithubDirectoryCommitChecker()
         {
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
@@ -33,24 +34,16 @@ namespace Github2Wandbox.Models
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<SourceFiles> GetSourceFilesAsync(GithubDirectoryDescription description)
+        public virtual async Task<string> GetCommitShaAsync(GithubDirectoryDescription description)
         {
             string mainDirectory = Path.GetDirectoryName(description.MainPath);
-            string mainFile = Path.GetFileName(description.MainPath);
-            string apiUrl = $"https://api.github.com/repos/{description.Owner}/{description.Repository}/contents/{mainDirectory}";
+            string escapedMainDirectory = WebUtility.UrlEncode(mainDirectory);
+            string apiUrl = $"https://api.github.com/repos/{description.Owner}/" +
+                $"{description.Repository}/commits?path={escapedMainDirectory}";
             string response = await GetHttpAsync(apiUrl);
-            var files = JsonConvert.DeserializeObject<List<ContentResponse>>(response, jsonSettings);
-            var allSourceFiles = files
-                .Select(f => new SourceFile
-                {
-                    File = f.Name,
-                    Code = GetHttpAsync(f.DownloadUrl).Result
-                });
-            return new SourceFiles
-            {
-                Code = allSourceFiles.Single(f => f.File == mainFile).Code,
-                Codes = allSourceFiles.Where(f => f.File != mainFile).ToList()
-            };
+            var commits = JsonConvert.DeserializeObject<List<CommitResponse>>(response, jsonSettings);
+            var commit = commits.First();
+            return commit.Sha;
         }
     }
 }

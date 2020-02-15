@@ -1,7 +1,9 @@
 using Xunit;
-using Github2Wandbox.Models;
+using Github2Wandbox.Models.Common;
+using Github2Wandbox.Models.Wandbox;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Github2WandboxIntegrationTests
 {

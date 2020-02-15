@@ -1,5 +1,6 @@
 using Xunit;
-using Github2Wandbox.Models;
+using Github2Wandbox.Models.Common;
+using Github2Wandbox.Models.Github;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;

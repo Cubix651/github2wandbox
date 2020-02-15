@@ -6,6 +6,8 @@ using Github2Wandbox.ViewModels;
 using System.Threading.Tasks;
 using Github2Wandbox.Repository;
 using Microsoft.AspNetCore.Identity;
+using Github2Wandbox.Models.Github;
+using Github2Wandbox.Models.Wandbox;
 
 namespace Github2Wandbox.Controllers
 {

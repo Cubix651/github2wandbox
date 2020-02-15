@@ -1,6 +1,6 @@
 using System;
 
-namespace Github2Wandbox.Models
+namespace Github2Wandbox.ViewModels
 {
     public class ErrorViewModel
     {

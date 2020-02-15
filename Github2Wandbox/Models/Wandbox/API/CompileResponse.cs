@@ -1,4 +1,4 @@
-namespace Github2Wandbox.Models.Wandbox
+namespace Github2Wandbox.Models.Wandbox.API
 {
     public class CompileResponse
     {

@@ -5,11 +5,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Github2Wandbox.Models.Wandbox;
+using Github2Wandbox.Models.Common;
+using Github2Wandbox.Models.Wandbox.API;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Github2Wandbox.Models
+namespace Github2Wandbox.Models.Wandbox
 {
     public class WandboxPublisher
     {

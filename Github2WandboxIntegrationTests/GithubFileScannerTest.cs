@@ -1,5 +1,5 @@
 using Xunit;
-using Github2Wandbox.Models;
+using Github2Wandbox.Models.Github;
 using System.Threading.Tasks;
 
 namespace Github2WandboxIntegrationTests

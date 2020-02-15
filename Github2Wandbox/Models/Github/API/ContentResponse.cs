@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Github2Wandbox.Models.Github
+namespace Github2Wandbox.Models.Github.API
 {
     public class ContentResponse
     {

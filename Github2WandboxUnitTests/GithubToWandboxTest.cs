@@ -5,6 +5,9 @@ using Github2Wandbox.Repository;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Github2Wandbox.Models.Github;
+using Github2Wandbox.Models.Wandbox;
+using Github2Wandbox.Models.Common;
 
 namespace Github2WandboxUnitTests
 {

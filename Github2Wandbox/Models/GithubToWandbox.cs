@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Github2Wandbox.Models.Github;
+using Github2Wandbox.Models.Wandbox;
 using Github2Wandbox.Repository;
 
 namespace Github2Wandbox.Models

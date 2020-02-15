@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Github2Wandbox.Models
+namespace Github2Wandbox.Models.Common
 {
     public class SourceFiles
     {

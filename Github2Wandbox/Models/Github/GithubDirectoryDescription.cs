@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Github2Wandbox.Models
+namespace Github2Wandbox.Models.Github
 {
     public class GithubDirectoryDescription : IEquatable<GithubDirectoryDescription>
     {

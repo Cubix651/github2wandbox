@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Github2Wandbox.Models.Common;
 using Newtonsoft.Json;
 
-namespace Github2Wandbox.Models.Wandbox
+namespace Github2Wandbox.Models.Wandbox.API
 {
     public class CompileRequest
     {
