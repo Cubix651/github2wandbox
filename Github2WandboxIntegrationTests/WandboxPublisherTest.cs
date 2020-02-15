@@ -3,13 +3,21 @@ using Github2Wandbox.Models.Common;
 using Github2Wandbox.Models.Wandbox;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Github2Wandbox.Models.Communication;
 
 namespace Github2WandboxIntegrationTests
 {
     public class WandboxPublisherTest
     {
-        WandboxPublisher wandboxPublisher = new WandboxPublisher();
+        IHttpClient httpClient;
+        WandboxPublisher wandboxPublisher;
+
+        public WandboxPublisherTest()
+        {
+            httpClient = new HttpClient();
+            httpClient.AddUserAgent("Github2WandboxIntegrationTests");
+            wandboxPublisher = new WandboxPublisher(httpClient);
+        }
 
         [Fact]
         public async Task should_publish_single_file_successfully()

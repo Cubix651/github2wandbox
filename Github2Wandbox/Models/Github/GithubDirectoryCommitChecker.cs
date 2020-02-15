@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
+using Github2Wandbox.Models.Communication;
 using Github2Wandbox.Models.Github.API;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -13,25 +12,16 @@ namespace Github2Wandbox.Models.Github
 {
     public class GithubDirectoryCommitChecker
     {
-        HttpClient httpClient;
+        IHttpClient httpClient;
         JsonSerializerSettings jsonSettings;
 
-        public static string UserAgent { get; } = "Github2Wandbox";
-
-        public GithubDirectoryCommitChecker()
+        public GithubDirectoryCommitChecker(IHttpClient httpClient)
         {
-            httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
+            this.httpClient = httpClient;
 
             jsonSettings = new JsonSerializerSettings();
             jsonSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             jsonSettings.NullValueHandling = NullValueHandling.Ignore;
-        }
-
-        private async Task<string> GetHttpAsync(string url)
-        {
-            var response = await httpClient.GetAsync(url);
-            return await response.Content.ReadAsStringAsync();
         }
 
         public virtual async Task<string> GetCommitShaAsync(GithubDirectoryDescription description)
@@ -40,7 +30,7 @@ namespace Github2Wandbox.Models.Github
             string escapedMainDirectory = WebUtility.UrlEncode(mainDirectory);
             string apiUrl = $"https://api.github.com/repos/{description.Owner}/" +
                 $"{description.Repository}/commits?path={escapedMainDirectory}";
-            string response = await GetHttpAsync(apiUrl);
+            string response = await httpClient.GetAsync(apiUrl);
             var commits = JsonConvert.DeserializeObject<List<CommitResponse>>(response, jsonSettings);
             var commit = commits.First();
             return commit.Sha;

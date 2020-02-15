@@ -16,6 +16,7 @@
     <Folder Include="Models\Github\API\" />
     <Folder Include="Models\Wandbox\API\" />
     <Folder Include="Models\Common\" />
+    <Folder Include="Models\Communication\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />

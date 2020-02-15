@@ -4,13 +4,23 @@ using Github2Wandbox.Models.Github;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Github2Wandbox.Models.Communication;
 
 namespace Github2WandboxIntegrationTests
 {
     public class GithubDirectoryScannerTest
     {
-        GithubDirectoryScanner githubFileScanner = new GithubDirectoryScanner();
         static readonly string Directory = "multifile";
+
+        IHttpClient httpClient;
+        GithubDirectoryScanner githubFileScanner;
+
+        public GithubDirectoryScannerTest()
+        {
+            httpClient = new HttpClient();
+            httpClient.AddUserAgent("Github2WandboxIntegrationTests");
+            githubFileScanner = new GithubDirectoryScanner(httpClient);
+        }
 
         [Fact]
         public async Task should_get_multifile_content()

@@ -8,12 +8,16 @@ using Github2Wandbox.Repository;
 using Microsoft.AspNetCore.Identity;
 using Github2Wandbox.Models.Github;
 using Github2Wandbox.Models.Wandbox;
+using Github2Wandbox.Models.Communication;
 
 namespace Github2Wandbox.Controllers
 {
     public class HomeController : Controller
     {
+        public static string UserAgent { get; } = "Github2Wandbox";
+
         private readonly ILogger<HomeController> _logger;
+        private readonly IHttpClient httpClient;
         private readonly GithubToWandbox githubToWandbox;
         private readonly PublishUrlGenerator publishUrlGenerator;
         private readonly UserManager<IdentityUser> userManager;
@@ -25,12 +29,18 @@ namespace Github2Wandbox.Controllers
             SignInManager<IdentityUser> signInManager)
         {
             _logger = logger;
+
+            httpClient = new HttpClient();
+            httpClient.AddUserAgent(UserAgent);
+
             githubToWandbox = new GithubToWandbox(
                 publicationsContext,
-                new GithubDirectoryCommitChecker(),
-                new GithubDirectoryScanner(),
-                new WandboxPublisher());
+                new GithubDirectoryCommitChecker(httpClient),
+                new GithubDirectoryScanner(httpClient),
+                new WandboxPublisher(httpClient));
+
             publishUrlGenerator = new PublishUrlGenerator();
+
             this.userManager = userManager;
             this.signInManager = signInManager;
         }

@@ -1,12 +1,21 @@
 using Xunit;
 using Github2Wandbox.Models.Github;
 using System.Threading.Tasks;
+using Github2Wandbox.Models.Communication;
 
 namespace Github2WandboxIntegrationTests
 {
     public class GithubFileScannerTest
     {
-        GithubFileScanner githubFileScanner = new GithubFileScanner();
+        IHttpClient httpClient;
+        GithubFileScanner githubFileScanner;
+
+        public GithubFileScannerTest()
+        {
+            httpClient = new HttpClient();
+            httpClient.AddUserAgent("Github2WandboxIntegrationTests");
+            githubFileScanner = new GithubFileScanner(httpClient);
+        }
 
         [Fact]
         public async Task should_get_single_file_content()

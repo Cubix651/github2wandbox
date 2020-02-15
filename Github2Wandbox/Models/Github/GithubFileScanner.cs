@@ -1,33 +1,23 @@
-using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Github2Wandbox.Models.Common;
+using Github2Wandbox.Models.Communication;
 
 namespace Github2Wandbox.Models.Github
 {
     public class GithubFileScanner : IGithubScanner
     {
-        HttpClient httpClient;
+        IHttpClient httpClient;
 
-        public static string UserAgent { get; } = "Github2Wandbox";
-
-        public GithubFileScanner()
+        public GithubFileScanner(IHttpClient httpClient)
         {
-            httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
-        }
-
-        private async Task<string> GetHttpAsync(string url)
-        {
-            var response = await httpClient.GetAsync(url);
-            return await response.Content.ReadAsStringAsync();
+            this.httpClient = httpClient;
         }
 
         public async Task<SourceFiles> GetSourceFilesAsync(GithubDirectoryDescription githubDirectoryDescription)
         {
             return new SourceFiles
             {
-                Code = await GetHttpAsync(githubDirectoryDescription.Url)
+                Code = await httpClient.GetAsync(githubDirectoryDescription.Url)
             };
         }
     }
