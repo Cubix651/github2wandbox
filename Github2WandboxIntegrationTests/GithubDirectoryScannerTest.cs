@@ -13,13 +13,13 @@ namespace Github2WandboxIntegrationTests
         static readonly string Directory = "multifile";
 
         IHttpClient httpClient;
-        GithubDirectoryScanner githubFileScanner;
+        GithubDirectoryScanner githubDirectoryScanner;
 
         public GithubDirectoryScannerTest()
         {
             httpClient = new HttpClient();
             httpClient.AddUserAgent("Github2WandboxIntegrationTests");
-            githubFileScanner = new GithubDirectoryScanner(httpClient);
+            githubDirectoryScanner = new GithubDirectoryScanner(httpClient);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace Github2WandboxIntegrationTests
                 MainPath = "multifile-example/main.cpp",
             };
 
-            var sourceFiles = await githubFileScanner.GetSourceFilesAsync(directoryDescription);
+            var sourceFiles = await githubDirectoryScanner.GetSourceFilesAsync(directoryDescription);
 
             Assert.Equal(Resources.Get($"{Directory}/main.cpp"), sourceFiles.Code);
             var expectedCodes = new[] { "a.cpp", "a.h", "b.cpp", "b.h" }
