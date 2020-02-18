@@ -19,7 +19,7 @@ namespace Github2Wandbox.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpClient httpClient;
         private readonly GithubToWandbox githubToWandbox;
-        private readonly PublishUrlGenerator publishUrlGenerator;
+        private readonly PublicationUrlGenerator publishUrlGenerator;
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManager;
 
@@ -39,7 +39,7 @@ namespace Github2Wandbox.Controllers
                 new GithubDirectoryScanner(httpClient),
                 new WandboxPublisher(httpClient));
 
-            publishUrlGenerator = new PublishUrlGenerator();
+            publishUrlGenerator = new PublicationUrlGenerator();
 
             this.userManager = userManager;
             this.signInManager = signInManager;

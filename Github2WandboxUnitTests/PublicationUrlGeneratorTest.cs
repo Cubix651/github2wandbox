@@ -5,13 +5,13 @@ using Github2Wandbox.ViewModels;
 
 namespace Github2WandboxUnitTests
 {
-    public class PublishUrlGeneratorTest
+    public class PublicationUrlGeneratorTest
     {
-        PublishUrlGenerator publishUrlGenerator;
+        PublicationUrlGenerator publicationUrlGenerator;
 
-        public PublishUrlGeneratorTest()
+        public PublicationUrlGeneratorTest()
         {
-            publishUrlGenerator = new PublishUrlGenerator();
+            publicationUrlGenerator = new PublicationUrlGenerator();
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace Github2WandboxUnitTests
                 main_path = "sources/main.cpp",
                 compiler_standard = "abc"
             };
-            var url = publishUrlGenerator.Generate(optiones);
+            var url = publicationUrlGenerator.Generate(optiones);
 
             Assert.Equal("Publication/Cubix651/github2wandbox/sources/main.cpp?compiler_standard=abc", url);
         }
@@ -40,7 +40,7 @@ namespace Github2WandboxUnitTests
                 compiler_standard = "c++2a"
             };
 
-            var url = publishUrlGenerator.Generate(optiones);
+            var url = publicationUrlGenerator.Generate(optiones);
 
             Assert.Equal("Publication/a/b/c/d.cpp?compiler_standard=c%2B%2B2a", url);
         }
