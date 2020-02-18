@@ -26,7 +26,7 @@ namespace Github2WandboxUnitTests
             };
             var url = publishUrlGenerator.Generate(optiones);
 
-            Assert.Equal("Publish/Cubix651/github2wandbox/sources/main.cpp?compiler_standard=abc", url);
+            Assert.Equal("Publication/Cubix651/github2wandbox/sources/main.cpp?compiler_standard=abc", url);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace Github2WandboxUnitTests
 
             var url = publishUrlGenerator.Generate(optiones);
 
-            Assert.Equal("Publish/a/b/c/d.cpp?compiler_standard=c%2B%2B2a", url);
+            Assert.Equal("Publication/a/b/c/d.cpp?compiler_standard=c%2B%2B2a", url);
         }
     }
 }
