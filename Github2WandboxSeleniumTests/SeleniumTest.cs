@@ -30,7 +30,7 @@ namespace Github2WandboxSeleniumTests
             Driver.FindElement(By.Id("main_path")).SendKeys("singlefile-examples/a.cpp");
             Driver.FindElement(By.CssSelector("button:nth-child(1)")).Click();
             Driver.FindElement(By.CssSelector("input")).Click();
-            string expectedGeneratedLink = BaseUrl + "Publish/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a";
+            string expectedGeneratedLink = BaseUrl + "Publication/Cubix651/github2wandbox-testrepo/singlefile-examples/a.cpp?compiler_standard=c%2B%2B2a";
             Assert.Equal(Driver.FindElement(By.LinkText(expectedGeneratedLink)).Text, expectedGeneratedLink);
             {
                 string value = Driver.FindElement(By.CssSelector("input")).GetAttribute("value");
@@ -41,7 +41,7 @@ namespace Github2WandboxSeleniumTests
         [Fact]
         public void should_redirect_succesfully_to_wandbox()
         {
-            Driver.Navigate().GoToUrl(BaseUrl + "Publish/Cubix651/github2wandbox-testrepo/multifile-example/main.cpp?compiler_standard=c%2B%2B2a");
+            Driver.Navigate().GoToUrl(BaseUrl + "Publication/Cubix651/github2wandbox-testrepo/multifile-example/main.cpp?compiler_standard=c%2B%2B2a");
             Assert.StartsWith("https://wandbox.org", Driver.Url);
             Assert.Equal(Driver.FindElement(By.CssSelector(".ExitCode")).Text, "0");
         }
